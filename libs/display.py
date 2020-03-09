@@ -139,7 +139,7 @@ def line(in_str,s=FONT_SIZE):
     global FONT_SIZE
     global anchor_x
     global anchor_y
-    #font=ImageFont.truetype("../ARIALUNI.TTF", s)
+    font=ImageFont.truetype("../ARIALUNI.TTF", s)
     draw.text((anchor_x, anchor_y),in_str,  font=font, fill=255)
     #show()
     anchor_y = anchor_y + s
@@ -148,7 +148,7 @@ def display(DEVICE_ID="",temp=0,hum=0,pm25=0,co2=0,flag=""):
     #oled.clear()
     flush()
     pairs = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S").split(" ")
-    line("ID: " + DEVICE_ID,12)
+    line("ID: " + DEVICE_ID,14)
     line("Date: " + str(pairs[0]))
     line("Time: " + str(pairs[1]))
     line("Temp: " + str(temp) + " / " + "RH: " + str(hum))
