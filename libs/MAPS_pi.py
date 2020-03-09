@@ -19,7 +19,7 @@ def GET_STORAGE_PATH():
 
     #only use
     path = Conf.FS_SD
-        return path
+    return path
 
 def save_data(path,data_list):
     
