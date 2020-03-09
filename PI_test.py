@@ -27,7 +27,7 @@ Illuminance = 0
 PM1_AE      = 0
 PM25_AE     = 0
 PM10_AE     = 0
-connection_flag = "X"
+connection_flag = ""
 
 
 def show_task():
@@ -47,7 +47,7 @@ def upload_task():
         format_data_list = [Conf.DEVICE_ID,pairs[0],pairs[1],TEMP,HUM,PM25_AE,PM1_AE,PM10_AE,Illuminance,CO2,TVOC]
         pi.save_data(path,format_data_list)  #please consider multiple save
         print("send message saved!")
-        
+
 
 def save_task():
     while True:
@@ -57,7 +57,7 @@ def save_task():
         format_data_list = [Conf.DEVICE_ID,pairs[0],pairs[1],TEMP,HUM,PM25_AE,PM1_AE,PM10_AE,Illuminance,CO2,TVOC]
         pi.save_data(path,format_data_list)  #please consider multiple save
         print("message saved!")
-        
+
 def connection_task():
     while True:
         time.sleep(10)
@@ -65,12 +65,12 @@ def connection_task():
 
 
 def check_connection():
-    #global connection_flag
+    global connection_flag
     if(os.system('ping www.google.com -q -c 1  > /dev/null')):
         connection_flag = "X"
         #print("no internet")
         #return 0
-        
+
     else:
         connection_flag = "@"
         #print("connect OK")
@@ -112,7 +112,7 @@ connection_t.setDaemon(True)
 #connection_t.start()
 
 try:
-    print("START") 
+    print("START")
     print("========================")
 
     #add welcome image?
@@ -206,7 +206,7 @@ try:
     #if need to do
 
     print("------------------------")
-    
+
     #start routine job
     display_t.start()
     upload_t.start()
