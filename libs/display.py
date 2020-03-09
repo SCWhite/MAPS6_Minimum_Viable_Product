@@ -148,7 +148,7 @@ def display(DEVICE_ID="",temp=0,hum=0,pm25=0,co2=0,flag=""):
     #oled.clear()
     flush()
     pairs = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S").split(" ")
-    line(12,"ID: " + DEVICE_ID)
+    line("ID: " + DEVICE_ID,12)
     line("Date: " + str(pairs[0]))
     line("Time: " + str(pairs[1]))
     line("Temp: " + str(temp) + " / " + "RH: " + str(hum))
