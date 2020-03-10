@@ -144,7 +144,7 @@ def line(in_str,s=FONT_SIZE):
     #show()
     anchor_y = anchor_y + s
 
-def display(DEVICE_ID="",temp=0,hum=0,pm25=0,co2=0,flag=""):
+def display(DEVICE_ID="",temp=0,hum=0,pm25=0,co2=0,flag="",version=""):
     #oled.clear()
     flush()
     pairs = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S").split(" ")
@@ -154,6 +154,7 @@ def display(DEVICE_ID="",temp=0,hum=0,pm25=0,co2=0,flag=""):
     line("Temp: " + str(temp) + " / " + "RH: " + str(hum))
     line("PM2.5: " + str(pm25) + " um")
     line("CO2: " + str(co2) + " ppm")
+    draw.text((80, 51),"v " + version,  font=font, fill=255)
     draw.text((117, 51),flag,  font=font, fill=255)
     #line("IP: " + DEVICE_IP)
     show()
