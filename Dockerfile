@@ -1,4 +1,4 @@
-FROM debian:arm64v8/debian
+FROM arm64v8/debian:latest
 
 RUN apt-get update && apt-get install -y \
     python3-pip \
