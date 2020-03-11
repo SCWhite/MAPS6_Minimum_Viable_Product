@@ -45,7 +45,8 @@ def upload_task():
         r = requests.get(restful_str)
         #save after upload / makesure data will be synchronize
         format_data_list = [Conf.DEVICE_ID,pairs[0],pairs[1],TEMP,HUM,PM25_AE,PM1_AE,PM10_AE,Illuminance,CO2,TVOC]
-        pi.save_data(path,format_data_list)  #please consider multiple save
+        pi.save_data(path,format_data_list) #save to host
+        pi.save_to_SD(format_data_list)     #save to SD card
         print("send message saved!")
 
 
@@ -55,7 +56,8 @@ def save_task():
         #format to ['device_id', 'date', 'time', 'Tmp',  'RH',   'PM2.5','PM10', 'PM1.0','Lux',  'CO2',  'TVOC']
         pairs = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S").split(" ")
         format_data_list = [Conf.DEVICE_ID,pairs[0],pairs[1],TEMP,HUM,PM25_AE,PM1_AE,PM10_AE,Illuminance,CO2,TVOC]
-        pi.save_data(path,format_data_list)  #please consider multiple save
+        pi.save_data(path,format_data_list) #save to host
+        pi.save_to_SD(format_data_list)     #save to SD card
         print("message saved!")
 
 def connection_task():
@@ -215,7 +217,7 @@ try:
 
 
     #close the fan
-    mcu.SET_PIN_FAN_ALL(0)
+    #mcu.SET_PIN_FAN_ALL(0)
 
     while (do_condition):
         print("START GET DATA (loop:" + str(loop) + ")")
