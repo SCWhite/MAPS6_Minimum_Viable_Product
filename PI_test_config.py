@@ -18,7 +18,7 @@ SecureKey = "NoKey"
 
 #mcu version
 latest_mcu_version = 980
-ver_app            = "0.0.1"
+ver_app            = "0.0.2"
 
 
 #path
