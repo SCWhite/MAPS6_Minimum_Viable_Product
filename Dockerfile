@@ -1,5 +1,5 @@
-#FROM debian:latest
-FROM arm32v7/debian
+FROM debian:latest
+
 
 RUN apt-get update && apt-get install -y \
     python3-pip \
