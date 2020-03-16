@@ -18,7 +18,7 @@ SecureKey = "NoKey"
 
 #mcu version
 latest_mcu_version = 980
-ver_app            = "0.0.2"
+ver_app            = "6.0.2"  #change to 6.x.x version for MAPS6
 
 
 #path
