@@ -1198,6 +1198,7 @@ def PROTOCOL_UART_TX_RX(UART_PORT,TX_DATA,RX_LENGTH,TIMEOUT=1000):
     host_send.extend(TX_DATA_length)
     
     #recive length of RX data
+    recive_length = RX_LENGTH
     RX_LENGTH = convert_2_byte(RX_LENGTH)
     host_send.extend(RX_LENGTH)
     
@@ -1216,7 +1217,7 @@ def PROTOCOL_UART_TX_RX(UART_PORT,TX_DATA,RX_LENGTH,TIMEOUT=1000):
 
     ser.write(bytes(host_send))
 
-    reveive_data = GENERAL_RESPONSE(cmd,PROTOCOL_UART_TX_RX_resp + RX_LENGTH) #resp = 6 byte 
+    reveive_data = GENERAL_RESPONSE(cmd,PROTOCOL_UART_TX_RX_resp + recive_length) #resp = 6 byte 
     if debug:
         print(reveive_data)
         print("".join("%02x " % i for i in reveive_data).upper())
