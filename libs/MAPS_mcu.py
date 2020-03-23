@@ -75,13 +75,13 @@ SET_RTC_DATE_TIME_resp    = 4 # V1.1 (Update)
 SET_PIN_FAN_ALL_resp      = 4 # V1.1 (New)
 
 PROTOCOL_I2C_WRITE_resp    = 4
-#PROTOCOL_I2C_READ_resp     = 6+n
+PROTOCOL_I2C_READ_resp     = 6
 PROTOCOL_UART_BEGIN_resp   = 4
-#PROTOCOL_UART_TX_RX_resp   = 6+n # V1.1 (Update)
-#PROTOCOL_UART_TXRX_EX_resp = 8+n # V1.1 (New)
+PROTOCOL_UART_TX_RX_resp   = 6 # V1.1 (Update)
+PROTOCOL_UART_TXRX_EX_resp = 8 # V1.1 (New)
 
 ENABLE_UART_ACTIVE_RX_resp = 4 # V1.1 (New)
-#ECHO_UART_ACTIVE_RX_resp   = 7+n # V1.1 (New)
+ECHO_UART_ACTIVE_RX_resp   = 7 # V1.1 (New)
 
 #==========CONVERT FUNC==========#
 
@@ -1097,7 +1097,28 @@ def PROTOCOL_I2C_WRITE(i2c_address,i2c_data,freq = 0):
     host_send.append(sum_byte)
     host_send.append(bit_reverse(sum_byte))
     
-    return host_send
+    #return host_send
+
+    ser.write(bytes(host_send))
+
+    reveive_data = GENERAL_RESPONSE(cmd,PROTOCOL_I2C_WRITE_resp)
+    if debug:
+        print(reveive_data)
+        print("".join("%02x " % i for i in reveive_data).upper())
+
+    #add exception
+    try:
+        Leading   = (reveive_data[0])
+        Command   = (reveive_data[1])
+        RESULT    = (reveive_data[2])
+    #
+    except:
+        Leading   = 0
+        Command   = 0
+        RESULT    = 0
+        
+    return RESULT
+
 
 def PROTOCOL_I2C_READ(i2c_address,i2c_read_length,freq = 0):
     cmd = PROTOCOL_I2C_READ_cmd
@@ -1138,10 +1159,30 @@ def PROTOCOL_UART_BEGIN(UART_PORT,BAUD = 0,FORMAT = 0):
     host_send.append(sum_byte)
     host_send.append(bit_reverse(sum_byte))
     
-    return host_send
+    #return host_send
+
+    ser.write(bytes(host_send))
+
+    reveive_data = GENERAL_RESPONSE(cmd,PROTOCOL_UART_BEGIN_resp)
+    if debug:
+        print(reveive_data)
+        print("".join("%02x " % i for i in reveive_data).upper())
+
+    #add exception
+    try:
+        Leading   = (reveive_data[0])
+        Command   = (reveive_data[1])
+        RESULT    = (reveive_data[2])
+    #
+    except:
+        Leading   = 0
+        Command   = 0
+        RESULT    = 0
+        
+    return RESULT
 
     
-def PROTOCOL_UART_TX_RX(UART_PORT,TX_DATA,RX_LENGTH,TIMEOUT):
+def PROTOCOL_UART_TX_RX(UART_PORT,TX_DATA,RX_LENGTH,TIMEOUT=1000):
     #TX_DATA_length : 2 Byte / RX_LENGTH : 2 Byte / TIMEOUT : 2 Byte
     cmd = PROTOCOL_UART_TX_RX_cmd
     host_send = bytearray()
@@ -1171,7 +1212,31 @@ def PROTOCOL_UART_TX_RX(UART_PORT,TX_DATA,RX_LENGTH,TIMEOUT):
     host_send.append(sum_byte)
     host_send.append(bit_reverse(sum_byte))
     
-    return host_send
+    #return host_send
+
+    ser.write(bytes(host_send))
+
+    reveive_data = GENERAL_RESPONSE(cmd,PROTOCOL_UART_TX_RX_resp + RX_LENGTH) #resp = 6 byte 
+    if debug:
+        print(reveive_data)
+        print("".join("%02x " % i for i in reveive_data).upper())
+
+    #add exception
+    try:
+        Leading   = (reveive_data[0])
+        Command   = (reveive_data[1])
+        RESULT    = (reveive_data[2])
+        RX_DATA   = ""
+        for i in range(RX_LENGTH):
+            RX_DATA.append(reveive_data[i+4])
+    #
+    except:
+        Leading   = 0
+        Command   = 0
+        RESULT    = 0
+        RX_DATA   = "err"
+        
+    return RESULT,RX_DATA
 
 
 def PROTOCOL_UART_TXRX_EX(UART_PORT,TX_DATA,BYTE_TIMEOUT,WAIT_TIMEOUT):
@@ -1200,7 +1265,33 @@ def PROTOCOL_UART_TXRX_EX(UART_PORT,TX_DATA,BYTE_TIMEOUT,WAIT_TIMEOUT):
     host_send.append(sum_byte)
     host_send.append(bit_reverse(sum_byte))
 
-    return host_send
+    #return host_send
+
+    ser.write(bytes(host_send))
+
+    #reveive_data = GENERAL_RESPONSE(cmd,PROTOCOL_UART_TXRX_EX_resp + RX_LENGTH) #resp = 6 byte 
+    reveive_data = ser.readline()
+
+    if debug:
+        print(reveive_data)
+        print("".join("%02x " % i for i in reveive_data).upper())
+
+    #add exception
+    try:
+        Leading   = (reveive_data[0])
+        Command   = (reveive_data[1])
+        RESULT    = (reveive_data[2])
+        RX_DATA   = ""
+        for i in range(len(host_send)-2):
+            RX_DATA.append(reveive_data[i+4])
+    #
+    except:
+        Leading   = 0
+        Command   = 0
+        RESULT    = 0
+        RX_DATA   = "err"
+        
+    return RESULT,RX_DATA
 
 
 def ENABLE_UART_ACTIVE_RX(UART_PORT,ENABLE,POLLING_TIME,BYTE_TIMEOUT,RCV_TIMEOUT):
