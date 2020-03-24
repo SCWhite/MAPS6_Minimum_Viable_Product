@@ -1146,7 +1146,7 @@ def PROTOCOL_I2C_READ(i2c_address,i2c_read_length,freq = 0):
     return host_send
 
 
-def PROTOCOL_UART_BEGIN(UART_PORT,BAUD = 0,FORMAT = 0):
+def PROTOCOL_UART_BEGIN(UART_PORT,BAUD = 4,FORMAT = 0):
     cmd = PROTOCOL_UART_BEGIN_cmd
     host_send = bytearray()
     host_send.append(leading_cmd)
