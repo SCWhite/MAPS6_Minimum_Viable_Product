@@ -1098,6 +1098,8 @@ def PROTOCOL_I2C_WRITE(i2c_address,i2c_data,freq = 0):
     host_send.append(bit_reverse(sum_byte))
     
     #return host_send
+    if debug:
+        print("".join("%02x " % i for i in host_send).upper())
 
     ser.write(bytes(host_send))
 
@@ -1138,6 +1140,9 @@ def PROTOCOL_I2C_READ(i2c_address,i2c_read_length,freq = 0):
     host_send.append(sum_byte)
     host_send.append(bit_reverse(sum_byte))
     
+    if debug:
+        print("".join("%02x " % i for i in host_send).upper())
+
     return host_send
 
 
@@ -1160,6 +1165,8 @@ def PROTOCOL_UART_BEGIN(UART_PORT,BAUD = 0,FORMAT = 0):
     host_send.append(bit_reverse(sum_byte))
     
     #return host_send
+    if debug:
+        print("".join("%02x " % i for i in host_send).upper())
 
     ser.write(bytes(host_send))
 
@@ -1214,6 +1221,8 @@ def PROTOCOL_UART_TX_RX(UART_PORT,TX_DATA,RX_LENGTH,TIMEOUT=1000):
     host_send.append(bit_reverse(sum_byte))
     
     #return host_send
+    if debug:
+        print("".join("%02x " % i for i in host_send).upper())
 
     ser.write(bytes(host_send))
 
@@ -1267,6 +1276,8 @@ def PROTOCOL_UART_TXRX_EX(UART_PORT,TX_DATA,BYTE_TIMEOUT,WAIT_TIMEOUT):
     host_send.append(bit_reverse(sum_byte))
 
     #return host_send
+    if debug:
+        print("".join("%02x " % i for i in host_send).upper())
 
     ser.write(bytes(host_send))
 
