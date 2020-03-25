@@ -1250,7 +1250,7 @@ def PROTOCOL_UART_TX_RX(UART_PORT,TX_DATA,RX_LENGTH,TIMEOUT=1000):
         Command   = (reveive_data[1])
         RESULT    = (reveive_data[2])
         RX_DATA   = ""
-        for i in range(RX_LENGTH):
+        for i in range(recive_length):
             RX_DATA.append(reveive_data[i+4])
     #
     except:
@@ -1295,6 +1295,7 @@ def PROTOCOL_UART_TXRX_EX(UART_PORT,TX_DATA,BYTE_TIMEOUT,WAIT_TIMEOUT):
     ser.write(bytes(host_send))
 
     #reveive_data = GENERAL_RESPONSE(cmd,PROTOCOL_UART_TXRX_EX_resp + RX_LENGTH) #resp = 6 byte 
+    #consider multiple line 
     reveive_data = ser.readline()
 
     if debug:
