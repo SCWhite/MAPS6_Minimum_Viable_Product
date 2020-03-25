@@ -1237,9 +1237,11 @@ def PROTOCOL_UART_TX_RX(UART_PORT,TX_DATA,RX_LENGTH,TIMEOUT=1000):
     if debug:
         print("".join("%02x " % i for i in host_send).upper())
 
-    ser.write(bytes(host_send))
+    byte_count = ser.write(bytes(host_send))
 
-    reveive_data = GENERAL_RESPONSE(cmd,PROTOCOL_UART_TX_RX_resp + recive_length) #resp = 6 byte 
+    #reveive_data = GENERAL_RESPONSE(cmd,PROTOCOL_UART_TX_RX_resp + recive_length) #resp = 6 byte 
+    reveive_data = ser.read(byte_count)
+    
     if debug:
         print(reveive_data)
         print("".join("%02x " % i for i in reveive_data).upper())
@@ -1250,13 +1252,13 @@ def PROTOCOL_UART_TX_RX(UART_PORT,TX_DATA,RX_LENGTH,TIMEOUT=1000):
         Command   = (reveive_data[1])
         RESULT    = (reveive_data[2])
         RX_DATA   = []
-        for i in range(recive_length):
+        for i in range(byte_count-6):
             RX_DATA.append(reveive_data[i+4])
     #
     except:
         Leading   = 0
         Command   = 0
-        RESULT    = 0
+        RESULT    = (reveive_data[2])
         RX_DATA   = "err"
         
     return RESULT,RX_DATA
@@ -1292,11 +1294,14 @@ def PROTOCOL_UART_TXRX_EX(UART_PORT,TX_DATA,BYTE_TIMEOUT,WAIT_TIMEOUT):
     if debug:
         print("".join("%02x " % i for i in host_send).upper())
 
-    ser.write(bytes(host_send))
+    #byte_count caculate how much byte when receive 
+    byte_count = ser.write(bytes(host_send))
 
     #reveive_data = GENERAL_RESPONSE(cmd,PROTOCOL_UART_TXRX_EX_resp + RX_LENGTH) #resp = 6 byte 
     #consider multiple line 
-    reveive_data = ser.readline()
+
+    #read exactly how many bytes come in
+    reveive_data = ser.read(byte_count)
 
     if debug:
         print(reveive_data)
@@ -1308,13 +1313,13 @@ def PROTOCOL_UART_TXRX_EX(UART_PORT,TX_DATA,BYTE_TIMEOUT,WAIT_TIMEOUT):
         Command   = (reveive_data[1])
         RESULT    = (reveive_data[2])
         RX_DATA   = []
-        for i in range(len(host_send)-2):
+        for i in range(len(byte_count)-6):
             RX_DATA.append(reveive_data[i+4])
     #
     except:
         Leading   = 0
         Command   = 0
-        RESULT    = 0
+        RESULT    = (reveive_data[2])
         RX_DATA   = "err"
         
     return RESULT,RX_DATA
