@@ -1237,15 +1237,17 @@ def PROTOCOL_UART_TX_RX(UART_PORT,TX_DATA,RX_LENGTH,TIMEOUT=1000):
     if debug:
         print("".join("%02x " % i for i in host_send).upper())
 
-    byte_count = ser.write(bytes(host_send))
+    byte_send      =   ser.write(bytes(host_send))
+    byte_received  =   ser.inWaiting()
 
     #receive_data = GENERAL_RESPONSE(cmd,PROTOCOL_UART_TX_RX_resp + recive_length) #resp = 6 byte 
-    receive_data = ser.read(byte_count)
+    receive_data = ser.read(byte_received)
 
     if debug:
         print(receive_data)
         print("".join("%02x " % i for i in receive_data).upper())
-        print("byte_count:" + str(byte_count))
+        print("byte_send:" + str(byte_send))
+        print("byte_received:" + str(byte_received))
         print("receive_data_len:" + str(len(receive_data)))
 
     #add exception
@@ -1254,7 +1256,7 @@ def PROTOCOL_UART_TX_RX(UART_PORT,TX_DATA,RX_LENGTH,TIMEOUT=1000):
         Command   = (receive_data[1])
         RESULT    = (receive_data[2])
         RX_DATA   = []
-        for i in range(byte_count-6):
+        for i in range(byte_received-6):
             RX_DATA.append(receive_data[i+4])
     #
     except:
@@ -1297,19 +1299,22 @@ def PROTOCOL_UART_TXRX_EX(UART_PORT,TX_DATA,BYTE_TIMEOUT,WAIT_TIMEOUT):
     if debug:
         print("".join("%02x " % i for i in host_send).upper())
 
-    #byte_count caculate how much byte when receive 
-    byte_count = ser.write(bytes(host_send))
+    #byte_send caculate how much byte when send
+    byte_send      =  ser.write(bytes(host_send))
+    byte_received  =  ser.inWaiting()
 
     #receive_data = GENERAL_RESPONSE(cmd,PROTOCOL_UART_TXRX_EX_resp + RX_LENGTH) #resp = 6 byte 
     #consider multiple line 
 
     #read exactly how many bytes come in
-    receive_data = ser.read(byte_count)
+    receive_data = ser.read(byte_received)
 
     if debug:
         print(receive_data)
         print("".join("%02x " % i for i in receive_data).upper())
-        print("byte_count:" + str(byte_count))
+        print("byte_send:" + str(byte_send))
+        print("byte_received:" + str(byte_received))
+        print("receive_data_len:" + str(len(receive_data)))
 
     #add exception
     try:
@@ -1317,7 +1322,7 @@ def PROTOCOL_UART_TXRX_EX(UART_PORT,TX_DATA,BYTE_TIMEOUT,WAIT_TIMEOUT):
         Command   = (receive_data[1])
         RESULT    = (receive_data[2])
         RX_DATA   = []
-        for i in range(byte_count-6):
+        for i in range(byte_received-6):
             RX_DATA.append(receive_data[i+4])
     #
     except:
