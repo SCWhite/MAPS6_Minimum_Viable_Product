@@ -1,5 +1,7 @@
 # -*- coding: UTF-8 -*-
 
+import time
+
 #debug switch-- 1:on / 0:off
 debug = 0
 #if debug:
@@ -1318,7 +1320,7 @@ def PROTOCOL_UART_TXRX_EX(UART_PORT,TX_DATA,BYTE_TIMEOUT,WAIT_TIMEOUT):
 
     # give a little delay
     time.sleep(1)
-    
+
     byte_received  =  ser.inWaiting()
 
     #receive_data = GENERAL_RESPONSE(cmd,PROTOCOL_UART_TXRX_EX_resp + RX_LENGTH) #resp = 6 byte 
