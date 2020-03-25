@@ -1243,12 +1243,20 @@ def PROTOCOL_UART_TX_RX(UART_PORT,TX_DATA,RX_LENGTH,TIMEOUT=1000):
     #receive_data = GENERAL_RESPONSE(cmd,PROTOCOL_UART_TX_RX_resp + recive_length) #resp = 6 byte 
     receive_data = ser.read(byte_received)
 
+
     if debug:
         print(receive_data)
         print("".join("%02x " % i for i in receive_data).upper())
         print("byte_send:" + str(byte_send))
         print("byte_received:" + str(byte_received))
         print("receive_data_len:" + str(len(receive_data)))
+
+    # if received is empty
+    if (receive_data==bytes(0)): 
+        RESULT    = 6
+        RX_DATA   = "empty"
+
+        return RESULT,RX_DATA
 
     #add exception
     try:
@@ -1315,6 +1323,13 @@ def PROTOCOL_UART_TXRX_EX(UART_PORT,TX_DATA,BYTE_TIMEOUT,WAIT_TIMEOUT):
         print("byte_send:" + str(byte_send))
         print("byte_received:" + str(byte_received))
         print("receive_data_len:" + str(len(receive_data)))
+
+    # if received is empty
+    if (receive_data==bytes(0)): 
+        RESULT    = 6
+        RX_DATA   = "empty"
+        
+        return RESULT,RX_DATA
 
     #add exception
     try:
