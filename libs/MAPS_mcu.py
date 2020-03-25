@@ -116,24 +116,32 @@ def crc_calc(byte_arr):
 #and create proper format for multiple byte 
 
 def convert_2_byte(int_value):
+    #reverse Byte for Little-Endian
     host_send = bytearray()
-    host_send.append(int_value // 256)
+    #host_send.append(int_value // 256)
+    #host_send.append(int_value % 256)
     host_send.append(int_value % 256)
+    host_send.append(int_value // 256)
     
     return host_send
 
 
 def convert_4_byte(int_value):
+    #reverse Byte for Little-Endian
     host_send = bytearray()
     byte_0 = int_value // (256 * 256 * 256)
     byte_1 = (int_value % (256 * 256 * 256)) // (256 * 256)
     byte_2 = (int_value % (256 * 256)) // 256
     byte_3 = int_value % 256
     
-    host_send.append(byte_0)
-    host_send.append(byte_1)
-    host_send.append(byte_2)
+    # host_send.append(byte_0)
+    # host_send.append(byte_1)
+    # host_send.append(byte_2)
+    # host_send.append(byte_3)
     host_send.append(byte_3)
+    host_send.append(byte_2)
+    host_send.append(byte_1)
+    host_send.append(byte_0)
     
     return host_send
 
@@ -247,6 +255,11 @@ def LED_SET(cmd,state):
     #state
     # 2 Byte
     state = convert_2_byte(state)
+    # 300 > 44 + 1*256 (high byte at back)
+    # so switch byte
+    #host_send.append(state[1])
+    #host_send.append(state[0])
+    #lets try to solve this at "convert_2_byte"
     host_send.extend(state)
     #checksum
     sum_byte = crc_calc(host_send)
