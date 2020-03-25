@@ -1241,7 +1241,7 @@ def PROTOCOL_UART_TX_RX(UART_PORT,TX_DATA,RX_LENGTH,TIMEOUT=1000):
 
     #reveive_data = GENERAL_RESPONSE(cmd,PROTOCOL_UART_TX_RX_resp + recive_length) #resp = 6 byte 
     reveive_data = ser.read(byte_count)
-    
+
     if debug:
         print(reveive_data)
         print("".join("%02x " % i for i in reveive_data).upper())
@@ -1260,6 +1260,7 @@ def PROTOCOL_UART_TX_RX(UART_PORT,TX_DATA,RX_LENGTH,TIMEOUT=1000):
         Command   = 0
         RESULT    = (reveive_data[2])
         RX_DATA   = "err"
+        raise
         
     return RESULT,RX_DATA
 
@@ -1321,6 +1322,7 @@ def PROTOCOL_UART_TXRX_EX(UART_PORT,TX_DATA,BYTE_TIMEOUT,WAIT_TIMEOUT):
         Command   = 0
         RESULT    = (reveive_data[2])
         RX_DATA   = "err"
+        raise
         
     return RESULT,RX_DATA
 
