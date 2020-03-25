@@ -1246,6 +1246,7 @@ def PROTOCOL_UART_TX_RX(UART_PORT,TX_DATA,RX_LENGTH,TIMEOUT=1000):
         print(receive_data)
         print("".join("%02x " % i for i in receive_data).upper())
         print("byte_count:" + str(byte_count))
+        print("receive_data_len:" + str(len(receive_data)))
 
     #add exception
     try:
