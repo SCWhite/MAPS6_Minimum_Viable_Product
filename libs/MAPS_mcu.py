@@ -194,9 +194,9 @@ def GENERAL_RESPONSE(cmd,recive_byte):
     return data
 
     
-
+def CLEAR_INPUT():
+     ser.reset_input_buffer()
     
-
 
 def POLLING_SET(temp_sw,co2_sw,tvoc_sw,light_sw,pms_sw,rtc_sw):
     #command for SET_POLLING_SENSOR
