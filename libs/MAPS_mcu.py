@@ -1264,7 +1264,9 @@ def PROTOCOL_UART_TX_RX(UART_PORT,TX_DATA,RX_LENGTH,TIMEOUT=1000):
         Command   = (receive_data[1])
         RESULT    = (receive_data[2])
         RX_DATA   = []
+        # -6 for not showing  'leading / command / result*2 / checksum*2'
         for i in range(byte_received-6):
+            # +4 for offset  'leading / command / result*2'
             RX_DATA.append(receive_data[i+4])
     #
     except:
@@ -1337,8 +1339,10 @@ def PROTOCOL_UART_TXRX_EX(UART_PORT,TX_DATA,BYTE_TIMEOUT,WAIT_TIMEOUT):
         Command   = (receive_data[1])
         RESULT    = (receive_data[2])
         RX_DATA   = []
-        for i in range(byte_received-6):
-            RX_DATA.append(receive_data[i+4])
+        # -8 for not showing  'leading / command / result*2 / RX_length*2 / checksum*2'
+        for i in range(byte_received-8):
+            # +6 for offset  'leading / command / result*2 / RX_length*2'
+            RX_DATA.append(receive_data[i+6])
     #
     except:
         Leading   = 0
