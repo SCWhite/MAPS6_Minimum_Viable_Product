@@ -283,15 +283,15 @@ def GET_TEMP_HUM():
     
     ser.write(bytes(data))
 
-    reveive_data = GENERAL_RESPONSE(GET_TEMP_HUM_cmd,GET_TEMP_HUM_resp)
+    receive_data = GENERAL_RESPONSE(GET_TEMP_HUM_cmd,GET_TEMP_HUM_resp)
     if debug:
-        print(reveive_data)
-        print("".join("%02x " % i for i in reveive_data).upper())
+        print(receive_data)
+        print("".join("%02x " % i for i in receive_data).upper())
 
     #add exception
     try:
-        TEMP = (reveive_data[3]*256 + reveive_data[2])/100
-        HUM  = (reveive_data[5]*256 + reveive_data[4])/100
+        TEMP = (receive_data[3]*256 + receive_data[2])/100
+        HUM  = (receive_data[5]*256 + receive_data[4])/100
         if debug:
             print("TEMP: "+ str(TEMP))
             print("HUM: "+ str(HUM))
@@ -317,15 +317,15 @@ def GET_CO2():
     
     ser.write(bytes(data))
 
-    reveive_data = GENERAL_RESPONSE(GET_CO2_cmd,GET_CO2_resp)
+    receive_data = GENERAL_RESPONSE(GET_CO2_cmd,GET_CO2_resp)
     if debug:
-        print(reveive_data)
-        print("".join("%02x " % i for i in reveive_data).upper())
+        print(receive_data)
+        print("".join("%02x " % i for i in receive_data).upper())
 
     #add exception
     try:
-        CO2      = (reveive_data[3]*256 + reveive_data[2])
-        AVE_CO2  = (reveive_data[5]*256 + reveive_data[4])
+        CO2      = (receive_data[3]*256 + receive_data[2])
+        AVE_CO2  = (receive_data[5]*256 + receive_data[4])
         if debug:
             print("CO2: "+ str(CO2))
             print("AVE_CO2: "+ str(AVE_CO2))
@@ -348,19 +348,19 @@ def GET_TVOC():
     
     ser.write(bytes(data))
 
-    reveive_data = GENERAL_RESPONSE(GET_TVOC_cmd,GET_TVOC_resp)
+    receive_data = GENERAL_RESPONSE(GET_TVOC_cmd,GET_TVOC_resp)
     if debug:
-        print(reveive_data)
-        print("".join("%02x " % i for i in reveive_data).upper())
+        print(receive_data)
+        print("".join("%02x " % i for i in receive_data).upper())
 
     #add exception
     try:
-        TVOC           = (reveive_data[3]*256 + reveive_data[2])
-        eCO2           = (reveive_data[5]*256 + reveive_data[4])
-        S_H2           = (reveive_data[7]*256 + reveive_data[6])
-        S_ETHANOL      = (reveive_data[9]*256 + reveive_data[8])
-        BASELINE_TVOC  = (reveive_data[11]*256 + reveive_data[10])
-        BASELINE_eCO2  = (reveive_data[13]*256 + reveive_data[12])
+        TVOC           = (receive_data[3]*256 + receive_data[2])
+        eCO2           = (receive_data[5]*256 + receive_data[4])
+        S_H2           = (receive_data[7]*256 + receive_data[6])
+        S_ETHANOL      = (receive_data[9]*256 + receive_data[8])
+        BASELINE_TVOC  = (receive_data[11]*256 + receive_data[10])
+        BASELINE_eCO2  = (receive_data[13]*256 + receive_data[12])
         if debug:
             print("TVOC: "+ str(TVOC))
             print("eCO2: "+ str(eCO2))
@@ -394,19 +394,19 @@ def GET_LIGHT():
     
     ser.write(bytes(data))
 
-    reveive_data = GENERAL_RESPONSE(GET_LIGHT_cmd,GET_LIGHT_resp)
+    receive_data = GENERAL_RESPONSE(GET_LIGHT_cmd,GET_LIGHT_resp)
     if debug:
-        print(reveive_data)
-        print("".join("%02x " % i for i in reveive_data).upper())
+        print(receive_data)
+        print("".join("%02x " % i for i in receive_data).upper())
 
     #add exception
     try:
-        Illuminance         = (reveive_data[3]*256 + reveive_data[2])
-        ColorTemperature    = (reveive_data[5]*256 + reveive_data[4])
-        CH_R                = (reveive_data[7]*256 + reveive_data[6])
-        CH_G                = (reveive_data[9]*256 + reveive_data[8])
-        CH_B                = (reveive_data[11]*256 + reveive_data[10])
-        CH_C                = (reveive_data[13]*256 + reveive_data[12])
+        Illuminance         = (receive_data[3]*256 + receive_data[2])
+        ColorTemperature    = (receive_data[5]*256 + receive_data[4])
+        CH_R                = (receive_data[7]*256 + receive_data[6])
+        CH_G                = (receive_data[9]*256 + receive_data[8])
+        CH_B                = (receive_data[11]*256 + receive_data[10])
+        CH_C                = (receive_data[13]*256 + receive_data[12])
         if debug:
             print("Illuminance: "+ str(Illuminance))
             print("ColorTemperature: "+ str(ColorTemperature))
@@ -439,19 +439,19 @@ def GET_PMS():
     
     ser.write(bytes(data))
 
-    reveive_data = GENERAL_RESPONSE(GET_PMS_cmd,GET_PMS_resp)
+    receive_data = GENERAL_RESPONSE(GET_PMS_cmd,GET_PMS_resp)
     if debug:
-        print(reveive_data)
-        print("".join("%02x " % i for i in reveive_data).upper())
+        print(receive_data)
+        print("".join("%02x " % i for i in receive_data).upper())
 
     #add exception
     try:
-        PM1_AE   = (reveive_data[3]*256 + reveive_data[2])
-        PM25_AE  = (reveive_data[5]*256 + reveive_data[4])
-        PM10_AE  = (reveive_data[7]*256 + reveive_data[6])
-        PM1_SP   = (reveive_data[9]*256 + reveive_data[8])
-        PM25_SP  = (reveive_data[11]*256 + reveive_data[10])
-        PM10_SP  = (reveive_data[13]*256 + reveive_data[12])
+        PM1_AE   = (receive_data[3]*256 + receive_data[2])
+        PM25_AE  = (receive_data[5]*256 + receive_data[4])
+        PM10_AE  = (receive_data[7]*256 + receive_data[6])
+        PM1_SP   = (receive_data[9]*256 + receive_data[8])
+        PM25_SP  = (receive_data[11]*256 + receive_data[10])
+        PM10_SP  = (receive_data[13]*256 + receive_data[12])
         if debug:
             print("PM1_AE: "+ str(PM1_AE))
             print("PM25_AE: "+ str(PM25_AE))
@@ -484,35 +484,35 @@ def GET_SENSOR_ALL():
     
     ser.write(bytes(data))
 
-    reveive_data = GENERAL_RESPONSE(GET_SENSOR_ALL_cmd,GET_SENSOR_ALL_resp)
+    receive_data = GENERAL_RESPONSE(GET_SENSOR_ALL_cmd,GET_SENSOR_ALL_resp)
     if debug:
-        print(reveive_data)
-        print("".join("%02x " % i for i in reveive_data).upper())
+        print(receive_data)
+        print("".join("%02x " % i for i in receive_data).upper())
 
     #add exception
     try:
-        TEMP                = (reveive_data[3]*256 + reveive_data[2])/100
-        HUM                 = (reveive_data[5]*256 + reveive_data[4])/100
-        CO2                 = (reveive_data[7]*256 + reveive_data[6])
-        AVE_CO2             = (reveive_data[9]*256 + reveive_data[8])
-        TVOC                = (reveive_data[11]*256 + reveive_data[10])
-        eCO2                = (reveive_data[13]*256 + reveive_data[12])
-        S_H2                = (reveive_data[15]*256 + reveive_data[14])
-        S_ETHANOL           = (reveive_data[17]*256 + reveive_data[16])
-        BASELINE_TVOC       = (reveive_data[19]*256 + reveive_data[18])
-        BASELINE_eCO2       = (reveive_data[21]*256 + reveive_data[20])
-        Illuminance         = (reveive_data[23]*256 + reveive_data[22])
-        ColorTemperature    = (reveive_data[25]*256 + reveive_data[24])
-        CH_R                = (reveive_data[27]*256 + reveive_data[26])
-        CH_G                = (reveive_data[29]*256 + reveive_data[28])
-        CH_B                = (reveive_data[31]*256 + reveive_data[30])
-        CH_C                = (reveive_data[33]*256 + reveive_data[32])
-        PM1_AE              = (reveive_data[35]*256 + reveive_data[34])
-        PM25_AE             = (reveive_data[37]*256 + reveive_data[36])
-        PM10_AE             = (reveive_data[39]*256 + reveive_data[38])
-        PM1_SP              = (reveive_data[41]*256 + reveive_data[40])
-        PM25_SP             = (reveive_data[43]*256 + reveive_data[42])
-        PM10_SP             = (reveive_data[45]*256 + reveive_data[44])
+        TEMP                = (receive_data[3]*256 + receive_data[2])/100
+        HUM                 = (receive_data[5]*256 + receive_data[4])/100
+        CO2                 = (receive_data[7]*256 + receive_data[6])
+        AVE_CO2             = (receive_data[9]*256 + receive_data[8])
+        TVOC                = (receive_data[11]*256 + receive_data[10])
+        eCO2                = (receive_data[13]*256 + receive_data[12])
+        S_H2                = (receive_data[15]*256 + receive_data[14])
+        S_ETHANOL           = (receive_data[17]*256 + receive_data[16])
+        BASELINE_TVOC       = (receive_data[19]*256 + receive_data[18])
+        BASELINE_eCO2       = (receive_data[21]*256 + receive_data[20])
+        Illuminance         = (receive_data[23]*256 + receive_data[22])
+        ColorTemperature    = (receive_data[25]*256 + receive_data[24])
+        CH_R                = (receive_data[27]*256 + receive_data[26])
+        CH_G                = (receive_data[29]*256 + receive_data[28])
+        CH_B                = (receive_data[31]*256 + receive_data[30])
+        CH_C                = (receive_data[33]*256 + receive_data[32])
+        PM1_AE              = (receive_data[35]*256 + receive_data[34])
+        PM25_AE             = (receive_data[37]*256 + receive_data[36])
+        PM10_AE             = (receive_data[39]*256 + receive_data[38])
+        PM1_SP              = (receive_data[41]*256 + receive_data[40])
+        PM25_SP             = (receive_data[43]*256 + receive_data[42])
+        PM10_SP             = (receive_data[45]*256 + receive_data[44])
         #
     except:
         TEMP                = 0
@@ -555,14 +555,14 @@ def GET_INFO_VERSION():
     
     ser.write(bytes(data))
 
-    reveive_data = GENERAL_RESPONSE(GET_INFO_VERSION_cmd,GET_INFO_VERSION_resp)
+    receive_data = GENERAL_RESPONSE(GET_INFO_VERSION_cmd,GET_INFO_VERSION_resp)
     if debug:
-        print(reveive_data)
-        print("".join("%02x " % i for i in reveive_data).upper())
+        print(receive_data)
+        print("".join("%02x " % i for i in receive_data).upper())
 
     #add exception
     try:
-        VERSION = (reveive_data[3]*256 + reveive_data[2])
+        VERSION = (receive_data[3]*256 + receive_data[2])
         if debug:
             print("VERSION: "+ str(VERSION))
             print("------------------------------")
@@ -583,17 +583,17 @@ def GET_INFO_RUNTIME():
     
     ser.write(bytes(data))
 
-    reveive_data = GENERAL_RESPONSE(GET_INFO_RUNTIME_cmd,GET_INFO_RUNTIME_resp)
+    receive_data = GENERAL_RESPONSE(GET_INFO_RUNTIME_cmd,GET_INFO_RUNTIME_resp)
     if debug:
-        print(reveive_data)
-        print("".join("%02x " % i for i in reveive_data).upper())
+        print(receive_data)
+        print("".join("%02x " % i for i in receive_data).upper())
 
     #add exception
     try:
-        RT_DAY   = (reveive_data[3]*256 + reveive_data[2])
-        RT_HOUR  = (reveive_data[4])
-        RT_MIN   = (reveive_data[5])
-        RT_SEC   = (reveive_data[6])
+        RT_DAY   = (receive_data[3]*256 + receive_data[2])
+        RT_HOUR  = (receive_data[4])
+        RT_MIN   = (receive_data[5])
+        RT_SEC   = (receive_data[6])
         if debug:
             print("RT_DAY: "+ str(RT_DAY))
             print("RT_HOUR: "+ str(RT_HOUR))
@@ -622,19 +622,19 @@ def GET_INFO_ERROR_LOG():
     
     ser.write(bytes(data))
 
-    reveive_data = GENERAL_RESPONSE(GET_INFO_ERROR_LOG_cmd,GET_INFO_ERROR_LOG_resp)
+    receive_data = GENERAL_RESPONSE(GET_INFO_ERROR_LOG_cmd,GET_INFO_ERROR_LOG_resp)
     if debug:
-        print(reveive_data)
-        print("".join("%02x " % i for i in reveive_data).upper())
+        print(receive_data)
+        print("".join("%02x " % i for i in receive_data).upper())
 
     #add exception
     try:
-        ERROR_TEMP_HUM  = (reveive_data[3]*256 + reveive_data[2])
-        ERROR_CO2       = (reveive_data[5]*256 + reveive_data[4])
-        ERROR_TVOC      = (reveive_data[7]*256 + reveive_data[6])
-        ERROR_LIGHT     = (reveive_data[9]*256 + reveive_data[8])
-        ERROR_PMS       = (reveive_data[11]*256 + reveive_data[10])
-        ERROR_RTC       = (reveive_data[13]*256 + reveive_data[12])
+        ERROR_TEMP_HUM  = (receive_data[3]*256 + receive_data[2])
+        ERROR_CO2       = (receive_data[5]*256 + receive_data[4])
+        ERROR_TVOC      = (receive_data[7]*256 + receive_data[6])
+        ERROR_LIGHT     = (receive_data[9]*256 + receive_data[8])
+        ERROR_PMS       = (receive_data[11]*256 + receive_data[10])
+        ERROR_RTC       = (receive_data[13]*256 + receive_data[12])
         if debug:
             print("ERROR_TEMP_HUM: "+ str(ERROR_TEMP_HUM))
             print("ERROR_CO2: "+ str(ERROR_CO2))
@@ -666,25 +666,25 @@ def GET_INFO_SENSOR_POR():
     
     ser.write(bytes(data))
 
-    reveive_data = GENERAL_RESPONSE(GET_INFO_SENSOR_POR_cmd,GET_INFO_SENSOR_POR_resp)
+    receive_data = GENERAL_RESPONSE(GET_INFO_SENSOR_POR_cmd,GET_INFO_SENSOR_POR_resp)
     if debug:
-        print(reveive_data)
-        print("".join("%02x " % i for i in reveive_data).upper())
+        print(receive_data)
+        print("".join("%02x " % i for i in receive_data).upper())
 
     #add exception
     try:
-        POR_TEMP_HUM  = (reveive_data[2])
-        POR_CO2       = (reveive_data[3])
-        POR_TVOC      = (reveive_data[4])
-        POR_LIGHT     = (reveive_data[5])
-        POR_PMS       = (reveive_data[6])
-        POR_RTC       = (reveive_data[7])
-        POLL_TEMP_HUM = (reveive_data[8])
-        POLL_CO2      = (reveive_data[9])
-        POLL_TVOC     = (reveive_data[10])
-        POLL_LIGHT    = (reveive_data[11])
-        POLL_PMS      = (reveive_data[12])
-        POLL_RTC      = (reveive_data[13])
+        POR_TEMP_HUM  = (receive_data[2])
+        POR_CO2       = (receive_data[3])
+        POR_TVOC      = (receive_data[4])
+        POR_LIGHT     = (receive_data[5])
+        POR_PMS       = (receive_data[6])
+        POR_RTC       = (receive_data[7])
+        POLL_TEMP_HUM = (receive_data[8])
+        POLL_CO2      = (receive_data[9])
+        POLL_TVOC     = (receive_data[10])
+        POLL_LIGHT    = (receive_data[11])
+        POLL_PMS      = (receive_data[12])
+        POLL_RTC      = (receive_data[13])
         #
     except:
         POR_TEMP_HUM  = 0
@@ -714,19 +714,19 @@ def GET_RTC_DATE_TIME():
     
     ser.write(bytes(data))
 
-    reveive_data = GENERAL_RESPONSE(GET_RTC_DATE_TIME_cmd,GET_RTC_DATE_TIME_resp)
+    receive_data = GENERAL_RESPONSE(GET_RTC_DATE_TIME_cmd,GET_RTC_DATE_TIME_resp)
     if debug:
-        print(reveive_data)
-        print("".join("%02x " % i for i in reveive_data).upper())
+        print(receive_data)
+        print("".join("%02x " % i for i in receive_data).upper())
 
     #add exception
     try:
-        RTC_YY  = (reveive_data[2])
-        RTC_MM  = (reveive_data[3])
-        RTC_DD  = (reveive_data[4])
-        RTC_hh  = (reveive_data[5])
-        RTC_mm  = (reveive_data[6])
-        RTC_ss  = (reveive_data[7])
+        RTC_YY  = (receive_data[2])
+        RTC_MM  = (receive_data[3])
+        RTC_DD  = (receive_data[4])
+        RTC_hh  = (receive_data[5])
+        RTC_mm  = (receive_data[6])
+        RTC_ss  = (receive_data[7])
     #
     except:
         RTC_YY  = 0
@@ -750,20 +750,20 @@ def GET_INFO_PIN_STATE():
     
     ser.write(bytes(data))
 
-    reveive_data = GENERAL_RESPONSE(GET_INFO_PIN_STATE_cmd,GET_INFO_PIN_STATE_resp)
+    receive_data = GENERAL_RESPONSE(GET_INFO_PIN_STATE_cmd,GET_INFO_PIN_STATE_resp)
     if debug:
-        print(reveive_data)
-        print("".join("%02x " % i for i in reveive_data).upper())
+        print(receive_data)
+        print("".join("%02x " % i for i in receive_data).upper())
 
     #add exception
     try:
-        PIN_CO2_CAL       = (reveive_data[2])
-        PIN_PMS_RESET     = (reveive_data[3])
-        PIN_PMS_SET       = (reveive_data[4])
-        PIN_NBIOT_PWRKEY  = (reveive_data[5])
-        PIN_NBIOT_SLEEP   = (reveive_data[6])
-        PIN_LED_CTRL      = (reveive_data[7])
-        PIN_FAN_CTRL      = (reveive_data[8])
+        PIN_CO2_CAL       = (receive_data[2])
+        PIN_PMS_RESET     = (receive_data[3])
+        PIN_PMS_SET       = (receive_data[4])
+        PIN_NBIOT_PWRKEY  = (receive_data[5])
+        PIN_NBIOT_SLEEP   = (receive_data[6])
+        PIN_LED_CTRL      = (receive_data[7])
+        PIN_FAN_CTRL      = (receive_data[8])
         #
     except:
         PIN_CO2_CAL       = 0
@@ -795,16 +795,16 @@ def SET_STATUS_LED(state):
 
     ser.write(bytes(data))
 
-    reveive_data = GENERAL_RESPONSE(SET_STATUS_LED_cmd,SET_STATUS_LED_resp)
+    receive_data = GENERAL_RESPONSE(SET_STATUS_LED_cmd,SET_STATUS_LED_resp)
     if debug:
-        print(reveive_data)
-        print("".join("%02x " % i for i in reveive_data).upper())
+        print(receive_data)
+        print("".join("%02x " % i for i in receive_data).upper())
 
     #add exception
     try:
-        Leading   = (reveive_data[0])
-        Command   = (reveive_data[1])
-        RESULT    = (reveive_data[2])
+        Leading   = (receive_data[0])
+        Command   = (receive_data[1])
+        RESULT    = (receive_data[2])
     #
     except:
         Leading   = 0
@@ -826,16 +826,16 @@ def SET_PIN_CO2_CAL(state):
     
     ser.write(bytes(data))
 
-    reveive_data = GENERAL_RESPONSE(SET_PIN_CO2_CAL_cmd,SET_PIN_CO2_CAL_resp)
+    receive_data = GENERAL_RESPONSE(SET_PIN_CO2_CAL_cmd,SET_PIN_CO2_CAL_resp)
     if debug:
-        print(reveive_data)
-        print("".join("%02x " % i for i in reveive_data).upper())
+        print(receive_data)
+        print("".join("%02x " % i for i in receive_data).upper())
 
     #add exception
     try:
-        Leading   = (reveive_data[0])
-        Command   = (reveive_data[1])
-        RESULT    = (reveive_data[2])
+        Leading   = (receive_data[0])
+        Command   = (receive_data[1])
+        RESULT    = (receive_data[2])
     #
     except:
         Leading   = 0
@@ -857,16 +857,16 @@ def SET_PIN_PMS_RESET(state):
     
     ser.write(bytes(data))
 
-    reveive_data = GENERAL_RESPONSE(SET_PIN_PMS_RESET_cmd,SET_PIN_PMS_RESET_resp)
+    receive_data = GENERAL_RESPONSE(SET_PIN_PMS_RESET_cmd,SET_PIN_PMS_RESET_resp)
     if debug:
-        print(reveive_data)
-        print("".join("%02x " % i for i in reveive_data).upper())
+        print(receive_data)
+        print("".join("%02x " % i for i in receive_data).upper())
 
     #add exception
     try:
-        Leading   = (reveive_data[0])
-        Command   = (reveive_data[1])
-        RESULT    = (reveive_data[2])
+        Leading   = (receive_data[0])
+        Command   = (receive_data[1])
+        RESULT    = (receive_data[2])
     #
     except:
         Leading   = 0
@@ -888,16 +888,16 @@ def SET_PIN_PMS_SET(state):
     
     ser.write(bytes(data))
 
-    reveive_data = GENERAL_RESPONSE(SET_PIN_PMS_SET_cmd,SET_PIN_PMS_SET_resp)
+    receive_data = GENERAL_RESPONSE(SET_PIN_PMS_SET_cmd,SET_PIN_PMS_SET_resp)
     if debug:
-        print(reveive_data)
-        print("".join("%02x " % i for i in reveive_data).upper())
+        print(receive_data)
+        print("".join("%02x " % i for i in receive_data).upper())
         
     #add exception
     try:
-        Leading   = (reveive_data[0])
-        Command   = (reveive_data[1])
-        RESULT    = (reveive_data[2])
+        Leading   = (receive_data[0])
+        Command   = (receive_data[1])
+        RESULT    = (receive_data[2])
     #
     except:
         Leading   = 0
@@ -918,16 +918,16 @@ def SET_PIN_NBIOT_PWRKEY(state):
     
     ser.write(bytes(data))
 
-    reveive_data = GENERAL_RESPONSE(SET_PIN_NBIOT_PWRKEY_cmd,SET_PIN_NBIOT_PWRKEY_resp)
+    receive_data = GENERAL_RESPONSE(SET_PIN_NBIOT_PWRKEY_cmd,SET_PIN_NBIOT_PWRKEY_resp)
     if debug:
-        print(reveive_data)
-        print("".join("%02x " % i for i in reveive_data).upper())
+        print(receive_data)
+        print("".join("%02x " % i for i in receive_data).upper())
 
     #add exception
     try:
-        Leading   = (reveive_data[0])
-        Command   = (reveive_data[1])
-        RESULT    = (reveive_data[2])
+        Leading   = (receive_data[0])
+        Command   = (receive_data[1])
+        RESULT    = (receive_data[2])
     #
     except:
         Leading   = 0
@@ -948,16 +948,16 @@ def SET_PIN_NBIOT_SLEEP(state):
     
     ser.write(bytes(data))
 
-    reveive_data = GENERAL_RESPONSE(SET_PIN_NBIOT_SLEEP_cmd,SET_PIN_NBIOT_SLEEP_resp)
+    receive_data = GENERAL_RESPONSE(SET_PIN_NBIOT_SLEEP_cmd,SET_PIN_NBIOT_SLEEP_resp)
     if debug:
-        print(reveive_data)
-        print("".join("%02x " % i for i in reveive_data).upper())
+        print(receive_data)
+        print("".join("%02x " % i for i in receive_data).upper())
 
     #add exception
     try:
-        Leading   = (reveive_data[0])
-        Command   = (reveive_data[1])
-        RESULT    = (reveive_data[2])
+        Leading   = (receive_data[0])
+        Command   = (receive_data[1])
+        RESULT    = (receive_data[2])
     #
     except:
         Leading   = 0
@@ -979,16 +979,16 @@ def SET_PIN_LED_ALL(state):
     
     ser.write(bytes(data))
 
-    reveive_data = GENERAL_RESPONSE(SET_PIN_LED_ALL_cmd,SET_PIN_LED_ALL_resp)
+    receive_data = GENERAL_RESPONSE(SET_PIN_LED_ALL_cmd,SET_PIN_LED_ALL_resp)
     if debug:
-        print(reveive_data)
-        print("".join("%02x " % i for i in reveive_data).upper())
+        print(receive_data)
+        print("".join("%02x " % i for i in receive_data).upper())
 
     #add exception
     try:
-        Leading   = (reveive_data[0])
-        Command   = (reveive_data[1])
-        RESULT    = (reveive_data[2])
+        Leading   = (receive_data[0])
+        Command   = (receive_data[1])
+        RESULT    = (receive_data[2])
     #
     except:
         Leading   = 0
@@ -1009,16 +1009,16 @@ def SET_POLLING_SENSOR(POLL_TEMP,POLL_CO2,POLL_TVOC,POLL_LIGHT,POLL_PMS,POLL_RTC
     
     ser.write(bytes(data))
 
-    reveive_data = GENERAL_RESPONSE(SET_POLLING_SENSOR_cmd,SET_POLLING_SENSOR_resp)
+    receive_data = GENERAL_RESPONSE(SET_POLLING_SENSOR_cmd,SET_POLLING_SENSOR_resp)
     if debug:
-        print(reveive_data)
-        print("".join("%02x " % i for i in reveive_data).upper())
+        print(receive_data)
+        print("".join("%02x " % i for i in receive_data).upper())
 
     #add exception
     try:
-        Leading   = (reveive_data[0])
-        Command   = (reveive_data[1])
-        RESULT    = (reveive_data[2])
+        Leading   = (receive_data[0])
+        Command   = (receive_data[1])
+        RESULT    = (receive_data[2])
     #
     except:
         Leading   = 0
@@ -1039,16 +1039,16 @@ def SET_RTC_DATE_TIME(YY,MM,DD,hh,mm,ss):
     
     ser.write(bytes(data))
 
-    reveive_data = GENERAL_RESPONSE(SET_RTC_DATE_TIME_cmd,SET_RTC_DATE_TIME_resp)
+    receive_data = GENERAL_RESPONSE(SET_RTC_DATE_TIME_cmd,SET_RTC_DATE_TIME_resp)
     if debug:
-        print(reveive_data)
-        print("".join("%02x " % i for i in reveive_data).upper())
+        print(receive_data)
+        print("".join("%02x " % i for i in receive_data).upper())
 
     #add exception
     try:
-        Leading   = (reveive_data[0])
-        Command   = (reveive_data[1])
-        RESULT    = (reveive_data[2])
+        Leading   = (receive_data[0])
+        Command   = (receive_data[1])
+        RESULT    = (receive_data[2])
     #
     except:
         Leading   = 0
@@ -1068,16 +1068,16 @@ def SET_PIN_FAN_ALL(state):
     
     ser.write(bytes(data))
 
-    reveive_data = GENERAL_RESPONSE(SET_PIN_FAN_ALL_cmd,SET_PIN_FAN_ALL_resp)
+    receive_data = GENERAL_RESPONSE(SET_PIN_FAN_ALL_cmd,SET_PIN_FAN_ALL_resp)
     if debug:
-        print(reveive_data)
-        print("".join("%02x " % i for i in reveive_data).upper())
+        print(receive_data)
+        print("".join("%02x " % i for i in receive_data).upper())
 
     ##add exception
     try:
-        Leading   = (reveive_data[0])
-        Command   = (reveive_data[1])
-        RESULT    = (reveive_data[2])
+        Leading   = (receive_data[0])
+        Command   = (receive_data[1])
+        RESULT    = (receive_data[2])
     #
     except:
         Leading   = 0
@@ -1116,16 +1116,16 @@ def PROTOCOL_I2C_WRITE(i2c_address,i2c_data,freq = 0):
 
     ser.write(bytes(host_send))
 
-    reveive_data = GENERAL_RESPONSE(cmd,PROTOCOL_I2C_WRITE_resp)
+    receive_data = GENERAL_RESPONSE(cmd,PROTOCOL_I2C_WRITE_resp)
     if debug:
-        print(reveive_data)
-        print("".join("%02x " % i for i in reveive_data).upper())
+        print(receive_data)
+        print("".join("%02x " % i for i in receive_data).upper())
 
     #add exception
     try:
-        Leading   = (reveive_data[0])
-        Command   = (reveive_data[1])
-        RESULT    = (reveive_data[2])
+        Leading   = (receive_data[0])
+        Command   = (receive_data[1])
+        RESULT    = (receive_data[2])
     #
     except:
         Leading   = 0
@@ -1183,16 +1183,16 @@ def PROTOCOL_UART_BEGIN(UART_PORT,BAUD = 4,FORMAT = 0):
 
     ser.write(bytes(host_send))
 
-    reveive_data = GENERAL_RESPONSE(cmd,PROTOCOL_UART_BEGIN_resp)
+    receive_data = GENERAL_RESPONSE(cmd,PROTOCOL_UART_BEGIN_resp)
     if debug:
-        print(reveive_data)
-        print("".join("%02x " % i for i in reveive_data).upper())
+        print(receive_data)
+        print("".join("%02x " % i for i in receive_data).upper())
 
     #add exception
     try:
-        Leading   = (reveive_data[0])
-        Command   = (reveive_data[1])
-        RESULT    = (reveive_data[2])
+        Leading   = (receive_data[0])
+        Command   = (receive_data[1])
+        RESULT    = (receive_data[2])
     #
     except:
         Leading   = 0
@@ -1239,26 +1239,27 @@ def PROTOCOL_UART_TX_RX(UART_PORT,TX_DATA,RX_LENGTH,TIMEOUT=1000):
 
     byte_count = ser.write(bytes(host_send))
 
-    #reveive_data = GENERAL_RESPONSE(cmd,PROTOCOL_UART_TX_RX_resp + recive_length) #resp = 6 byte 
-    reveive_data = ser.read(byte_count)
+    #receive_data = GENERAL_RESPONSE(cmd,PROTOCOL_UART_TX_RX_resp + recive_length) #resp = 6 byte 
+    receive_data = ser.read(byte_count)
 
     if debug:
-        print(reveive_data)
-        print("".join("%02x " % i for i in reveive_data).upper())
+        print(receive_data)
+        print("".join("%02x " % i for i in receive_data).upper())
+        print("byte_count:" + str(byte_count))
 
     #add exception
     try:
-        Leading   = (reveive_data[0])
-        Command   = (reveive_data[1])
-        RESULT    = (reveive_data[2])
+        Leading   = (receive_data[0])
+        Command   = (receive_data[1])
+        RESULT    = (receive_data[2])
         RX_DATA   = []
         for i in range(byte_count-6):
-            RX_DATA.append(reveive_data[i+4])
+            RX_DATA.append(receive_data[i+4])
     #
     except:
         Leading   = 0
         Command   = 0
-        RESULT    = (reveive_data[2])
+        RESULT    = (receive_data[2])
         RX_DATA   = "err"
         raise
         
@@ -1298,29 +1299,30 @@ def PROTOCOL_UART_TXRX_EX(UART_PORT,TX_DATA,BYTE_TIMEOUT,WAIT_TIMEOUT):
     #byte_count caculate how much byte when receive 
     byte_count = ser.write(bytes(host_send))
 
-    #reveive_data = GENERAL_RESPONSE(cmd,PROTOCOL_UART_TXRX_EX_resp + RX_LENGTH) #resp = 6 byte 
+    #receive_data = GENERAL_RESPONSE(cmd,PROTOCOL_UART_TXRX_EX_resp + RX_LENGTH) #resp = 6 byte 
     #consider multiple line 
 
     #read exactly how many bytes come in
-    reveive_data = ser.read(byte_count)
+    receive_data = ser.read(byte_count)
 
     if debug:
-        print(reveive_data)
-        print("".join("%02x " % i for i in reveive_data).upper())
+        print(receive_data)
+        print("".join("%02x " % i for i in receive_data).upper())
+        print("byte_count:" + str(byte_count))
 
     #add exception
     try:
-        Leading   = (reveive_data[0])
-        Command   = (reveive_data[1])
-        RESULT    = (reveive_data[2])
+        Leading   = (receive_data[0])
+        Command   = (receive_data[1])
+        RESULT    = (receive_data[2])
         RX_DATA   = []
-        for i in range(len(byte_count)-6):
-            RX_DATA.append(reveive_data[i+4])
+        for i in range(byte_count-6):
+            RX_DATA.append(receive_data[i+4])
     #
     except:
         Leading   = 0
         Command   = 0
-        RESULT    = (reveive_data[2])
+        RESULT    = (receive_data[2])
         RX_DATA   = "err"
         raise
         
