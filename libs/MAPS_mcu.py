@@ -1238,6 +1238,10 @@ def PROTOCOL_UART_TX_RX(UART_PORT,TX_DATA,RX_LENGTH,TIMEOUT=1000):
         print("".join("%02x " % i for i in host_send).upper())
 
     byte_send      =   ser.write(bytes(host_send))
+
+    # give a little delay
+    time.sleep(1)
+
     byte_received  =   ser.inWaiting()
 
     #receive_data = GENERAL_RESPONSE(cmd,PROTOCOL_UART_TX_RX_resp + recive_length) #resp = 6 byte 
@@ -1311,6 +1315,10 @@ def PROTOCOL_UART_TXRX_EX(UART_PORT,TX_DATA,BYTE_TIMEOUT,WAIT_TIMEOUT):
 
     #byte_send caculate how much byte when send
     byte_send      =  ser.write(bytes(host_send))
+
+    # give a little delay
+    time.sleep(1)
+    
     byte_received  =  ser.inWaiting()
 
     #receive_data = GENERAL_RESPONSE(cmd,PROTOCOL_UART_TXRX_EX_resp + RX_LENGTH) #resp = 6 byte 
