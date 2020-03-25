@@ -1249,7 +1249,7 @@ def PROTOCOL_UART_TX_RX(UART_PORT,TX_DATA,RX_LENGTH,TIMEOUT=1000):
         Leading   = (reveive_data[0])
         Command   = (reveive_data[1])
         RESULT    = (reveive_data[2])
-        RX_DATA   = ""
+        RX_DATA   = []
         for i in range(recive_length):
             RX_DATA.append(reveive_data[i+4])
     #
@@ -1307,7 +1307,7 @@ def PROTOCOL_UART_TXRX_EX(UART_PORT,TX_DATA,BYTE_TIMEOUT,WAIT_TIMEOUT):
         Leading   = (reveive_data[0])
         Command   = (reveive_data[1])
         RESULT    = (reveive_data[2])
-        RX_DATA   = ""
+        RX_DATA   = []
         for i in range(len(host_send)-2):
             RX_DATA.append(reveive_data[i+4])
     #
