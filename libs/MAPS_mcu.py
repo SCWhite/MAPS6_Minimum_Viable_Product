@@ -1446,7 +1446,7 @@ def NBIOT_MQTT_pack(DEVICE_ID,gps_lat,gps_lon,app,ver_app,date,time,s_t0,s_h0,s_
     #add_on = "30 " + str(payload_len_hex.upper()) +" 00 1E "
     add_on.extend(payload_len_hex)
     #str(payload_len_hex.upper())
-    add_on.extend([0x00,0x1E])
+    add_on.extend([0x00,0x1D])
     end_line = [0x1A]
 
     #message_package = add_on + a + end_line
