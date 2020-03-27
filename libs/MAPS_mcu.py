@@ -1393,21 +1393,27 @@ def ENABLE_UART_ACTIVE_RX(UART_PORT,ENABLE,POLLING_TIME,BYTE_TIMEOUT,RCV_TIMEOUT
 
 
 def formatStrToInt(target):
-    kit = ""
+    kit = []
     for i in range(len(target)):
-        temp=ord(target[i])
-        temp=hex(temp)[2:]
-        kit=kit+str(temp)+" "
+        #temp=ord(target[i])
+        #temp=hex(temp)[2:]
+        temp = hex(ord(target[i]))
+        #kit=kit+str(temp)+" "
+        kit.append(temp)
         #print(temp,)
     return kit
 
 
 def NBIOT_MQTT_pack(DEVICE_ID,gps_lat,gps_lon,app,ver_app,date,time,s_t0,s_h0,s_d0,s_d1,s_d2,s_lc,s_g8,s_gg):
 
-    connect_pack_pre = "10 28 00 06 4D 51 49 73 64 70 03 C2 00 3C 00 0C "
+    connect_pack = []
+    connect_pack_pre = [0x10,0x28,0x00,0x06,0x4D,0x51,0x49,0x73,0x64,0x70,0x03,0xC2,0x00,0x3C,0x00,0x0C]
     Client_ID = formatStrToInt(DEVICE_ID)
-    connect_pack_post = "00 04 6D 61 70 73 00 06 69 69 73 6E 72 6C"
-    connect_pack = connect_pack_pre + Client_ID + connect_pack_post
+    connect_pack_post = [0x00,0x04,0x6D,0x61,0x70,0x73,0x00,0x06,0x69,0x69,0x73,0x6E,0x72,0x6C]
+    #connect_pack = connect_pack_pre + Client_ID + connect_pack_post
+    connect_pack.extend(connect_pack_pre)
+    connect_pack.extend(Client_ID)
+    connect_pack.extend(connect_pack_post)
 
     prifix = "MAPS/MAPS6/NBIOT/"+ DEVICE_ID
     msg = ""
@@ -1419,25 +1425,40 @@ def NBIOT_MQTT_pack(DEVICE_ID,gps_lat,gps_lon,app,ver_app,date,time,s_t0,s_h0,s_
 
     #MQTT Remaining Length calculate
     #currently support range 0~16383(1~2 byte)
+    payload_len_hex = []
+
     if(payload_len<128):
-        payload_len_hex = hex(payload_len).split('x')[-1]
+        payload_len_hex.append(hex(payload_len))
     else:
         a = payload_len % 128
         b = payload_len // 128
-        a = hex(a+128).split('x')[-1]
-        b = hex(b).split('x')[-1]
-        b = b.zfill(2)
-        payload_len_hex = str(a) + " " +  str(b)    
+        a = hex(a+128)
+        b = hex(b)
+        #b = b.zfill(2)
+        payload_len_hex.append(a)
+        payload_len_hex.append(b)
+        
 
     a = formatStrToInt(msg)
 
-    add_on = "30 " + str(payload_len_hex.upper()) +" 00 1E "
-    end_line = "1A"
-    message_package = add_on + a + end_line
-    message_package = connect_pack + ' ' + message_package
+    add_on = [0x30]
+    #add_on = "30 " + str(payload_len_hex.upper()) +" 00 1E "
+    add_on.extend(payload_len_hex)
+    #str(payload_len_hex.upper())
+    add_on.extend([0x00,0x1E])
+    end_line = [0x1A]
 
+    #message_package = add_on + a + end_line
+    #message_package = connect_pack + ' ' + message_package
+    
+    message_package = []
+    message_package.extend(add_on)
+    message_package.extend(a)
+    message_package.extend(end_line)
 
-    return message_package
+    connect_pack.extend(message_package)
+
+    return connect_pack
 ##
 ##
 ###===============TEST ALL ===============#
