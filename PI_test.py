@@ -39,7 +39,7 @@ def upload_task():
     while True:
         time.sleep(Conf.upload_interval) #300 seconds
         pairs = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S").split(" ")
-        msg = "|gps_lat=" + str(Conf.gps_lat) + "|s_t0=" + str(TEMP) + "|app=" + str(Conf.APP_ID) + "|date=" + pairs[0] + "|s_d2=" + str(PM1_AE) + "|s_d0=" + str(PM25_AE) + "|s_d1=" + str(PM10_AE) + "|s_h0=" + str(HUM) + "|device_id=" + Conf.DEVICE_ID +"|s_g8=" + str(CO2) + "|gps_lon="+ str(Conf.gps_lon) +"|ver_app=" + str(Conf.ver_app) + "|time=" + pairs[1]
+        msg = "|gps_lat=" + str(Conf.gps_lat) + "|s_t0=" + str(TEMP) + "|app=" + str(Conf.APP_ID) + "|date=" + pairs[0] + "|s_d2=" + str(PM1_AE) + "|s_d0=" + str(PM25_AE) + "|s_d1=" + str(PM10_AE) + "|s_h0=" + str(HUM) + "|device_id=" + Conf.DEVICE_ID +"|s_g8=" + str(CO2) + "|s_gg=" + str(TVOC) + "|gps_lon="+ str(Conf.gps_lon) +"|ver_app=" + str(Conf.ver_app) + "|time=" + pairs[1]
         print("message send!")
         restful_str = Conf.Restful_URL + "topic=" + Conf.APP_ID + "&device_id=" + Conf.DEVICE_ID + "&key=" + Conf.SecureKey + "&msg=" + msg
         r = requests.get(restful_str)
