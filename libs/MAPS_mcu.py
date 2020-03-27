@@ -1429,12 +1429,12 @@ def NBIOT_MQTT_pack(DEVICE_ID,gps_lat,gps_lon,app,ver_app,date,time,s_t0,s_h0,s_
     payload_len_hex = []
 
     if(payload_len<128):
-        payload_len_hex.append(hex(payload_len))
+        payload_len_hex.append(payload_len)
     else:
         a = payload_len % 128
         b = payload_len // 128
-        a = hex(a+128)
-        b = hex(b)
+        #a = hex(a+128)
+        #b = hex(b)
         #b = b.zfill(2)
         payload_len_hex.append(a)
         payload_len_hex.append(b)
