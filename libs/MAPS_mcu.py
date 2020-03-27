@@ -1392,6 +1392,50 @@ def ENABLE_UART_ACTIVE_RX(UART_PORT,ENABLE,POLLING_TIME,BYTE_TIMEOUT,RCV_TIMEOUT
     return host_send
 
 
+def formatStrToInt(target):
+    kit = ""
+    for i in range(len(target)):
+        temp=ord(target[i])
+        temp=hex(temp)[2:]
+        kit=kit+str(temp)+" "
+        #print(temp,)
+    return kit
+
+
+def NBIOT_MQTT_pack(DEVICE_ID,gps_lat,gps_lon,app,ver_app,date,time,s_t0,s_h0,s_d0,s_d1,s_d2,s_lc,s_g8,s_gg):
+
+    connect_pack_pre = "10 28 00 06 4D 51 49 73 64 70 03 C2 00 3C 00 0C "
+    Client_ID = formatStrToInt(DEVICE_ID)
+    connect_pack_post = " 00 04 6D 61 70 73 00 06 69 69 73 6E 72 6C "
+    connect_pack = connect_pack_pre + Client_ID + connect_pack_post
+
+    prifix = "MAPS/MAPS6/NBIOT/"+ DEVICE_ID
+    msg = ""
+    msg = "|gps_lat="+str(gps_lat)+"|s_t0="+str(s_t0)+"|app="+str(app)+"|date="+str(date)+"|s_d2="+str(s_d2)+"|s_d0="+str(s_d0)+"|s_d1="+str(s_d1)+"|s_h0="+str(s_h0)+"|s_lc="+str(s_lc)+"|device_id="+str(DEVICE_ID)+"|s_g8="+str(s_g8)+"|s_gg="+str(s_gg)+"|gps_lon="+str(gps_lon)+"|ver_app="+str(ver_app)+"|time="+str(time)
+
+    msg = prifix + msg
+    payload_len = len(msg) #remember to add tpoic length (2 byte in this case)
+    payload_len = payload_len + 2
+
+    #MQTT Remaining Length calculate
+    #currently support range 0~16383(1~2 byte)
+    if(payload_len<128):
+        payload_len_hex = hex(payload_len).split('x')[-1]
+    else:
+        a = payload_len % 128
+        b = payload_len // 128
+        a = hex(a+128).split('x')[-1]
+        b = hex(b).split('x')[-1]
+        b = b.zfill(2)
+        payload_len_hex = str(a) + " " +  str(b)    
+
+    a = formatStrToInt(msg)
+
+    add_on = "30 " + str(payload_len_hex.upper()) +" 00 1E "
+    end_line = "1A"
+    message_package = add_on + a + end_line
+
+    return message_package
 ##
 ##
 ###===============TEST ALL ===============#
