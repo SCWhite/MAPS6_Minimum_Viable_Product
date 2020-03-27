@@ -1459,7 +1459,9 @@ def NBIOT_MQTT_pack(DEVICE_ID,gps_lat,gps_lon,app,ver_app,date,time,s_t0,s_h0,s_
 
     connect_pack.extend(message_package)
 
-    return connect_pack
+    all_pack = bytearray(connect_pack)
+
+    return all_pack
 ##
 ##
 ###===============TEST ALL ===============#
