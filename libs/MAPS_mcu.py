@@ -1436,7 +1436,7 @@ def NBIOT_MQTT_pack(DEVICE_ID,gps_lat,gps_lon,app,ver_app,date,time,s_t0,s_h0,s_
         #a = hex(a+128)
         #b = hex(b)
         #b = b.zfill(2)
-        payload_len_hex.append(a)
+        payload_len_hex.append(a+128)
         payload_len_hex.append(b)
         
 
