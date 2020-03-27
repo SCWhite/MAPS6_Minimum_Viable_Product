@@ -1397,9 +1397,10 @@ def formatStrToInt(target):
     for i in range(len(target)):
         #temp=ord(target[i])
         #temp=hex(temp)[2:]
-        temp = hex(ord(target[i]))
+        #temp = hex(ord(target[i]))
+        temp = ord(target[i])
         #kit=kit+str(temp)+" "
-        kit.append(int(temp))
+        kit.append(temp)
         #print(temp,)
     return kit
 
