@@ -1399,7 +1399,7 @@ def formatStrToInt(target):
         #temp=hex(temp)[2:]
         temp = hex(ord(target[i]))
         #kit=kit+str(temp)+" "
-        kit.append(temp)
+        kit.append(int(temp))
         #print(temp,)
     return kit
 
