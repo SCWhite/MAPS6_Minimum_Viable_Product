@@ -1461,7 +1461,11 @@ def NBIOT_MQTT_pack(DEVICE_ID,gps_lat,gps_lon,app,ver_app,date,time,s_t0,s_h0,s_
 
     #all_pack = bytearray(connect_pack)
 
-    return connect_pack,message_package
+    #too long 
+    message_package_set = [message_package[i:i+100] for i in range(0,len(message_package),100)]
+
+    #return connect_pack,message_package
+    return connect_pack,message_package_set
 ##
 ##
 ###===============TEST ALL ===============#
