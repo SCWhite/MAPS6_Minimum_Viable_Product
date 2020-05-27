@@ -5,22 +5,22 @@ description: 此篇文章將說明MAPSV6的各項功能與機制
 # MAPSV6-使用完全手冊
 
 {% hint style="info" %}
-一般使用者可跳至 [快速安裝方法 ](an-zhuang-fang-fa.md)這章節會詳細介紹使用步驟
+一般使用者可跳至 [快速安裝方法 ](book/an-zhuang-fang-fa.md)這章節會詳細介紹使用步驟
 {% endhint %}
 
 ![&#x8A2D;&#x5099;&#x6B63;&#x9762;&#x5716;](.gitbook/assets/83249694_116958706266412_4052263908193337344_n%20%281%29.jpg)
 
 ## 目錄:
 
-1. [計畫說明](untitled.md)
-2. [硬體介紹](ying-ti-jie-shao.md)
-3. [設計架構](she-ji-jia-gou.md)
-4. [安裝方法](an-zhuang-fang-fa.md)
-5. [開機、運作流程](kai-ji-yun-zuo-liu-cheng.md)
-6. [資料蒐集](zi-liao-sou-ji.md)
-7. [資料格式](zi-liao-ge-shi.md)
-8. [資料應用](zi-liao-ying-yong.md)
-9. [障礙排除](zhang-ai-pai-chu.md)
+1. [計畫說明](book/untitled.md)
+2. [硬體介紹](book/ying-ti-jie-shao.md)
+3. [設計架構](book/she-ji-jia-gou.md)
+4. [安裝方法](book/an-zhuang-fang-fa.md)
+5. [開機、運作流程](book/kai-ji-yun-zuo-liu-cheng.md)
+6. [資料蒐集](book/zi-liao-sou-ji.md)
+7. [資料格式](book/zi-liao-ge-shi.md)
+8. [資料應用](book/zi-liao-ying-yong.md)
+9. [障礙排除](book/zhang-ai-pai-chu.md)
 
 ### 預計更新:
 
