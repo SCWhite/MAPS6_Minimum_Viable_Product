@@ -1,4 +1,4 @@
-import os 
+import os
 
 #ID
 DEVICE_ID = "MAPSV6_001"
@@ -18,7 +18,7 @@ SecureKey = "NoKey"
 
 #mcu version
 latest_mcu_version = 980
-ver_app            = "6.0.2"  #change to 6.x.x version for MAPS6
+ver_app            = "6.1.0"  #change to 6.x.x version for MAPS6
 
 
 #path
@@ -47,7 +47,7 @@ GPS_LON = 121.7870
 
 
 mac = open('/sys/class/net/eth0/address').readline().upper().strip()
-DEVICE_ID = mac.replace(':','')     
+DEVICE_ID = mac.replace(':','')
 
 #interval(seconds)
 show_interval   = 0.3

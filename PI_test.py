@@ -40,14 +40,23 @@ def upload_task():
         time.sleep(Conf.upload_interval) #300 seconds
         pairs = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S").split(" ")
         msg = "|gps_lat=" + str(Conf.gps_lat) + "|s_t0=" + str(TEMP) + "|app=" + str(Conf.APP_ID) + "|date=" + pairs[0] + "|s_d2=" + str(PM1_AE) + "|s_d0=" + str(PM25_AE) + "|s_d1=" + str(PM10_AE) + "|s_h0=" + str(HUM) + "|device_id=" + Conf.DEVICE_ID +"|s_g8=" + str(CO2) + "|s_gg=" + str(TVOC) + "|gps_lon="+ str(Conf.gps_lon) +"|ver_app=" + str(Conf.ver_app) + "|time=" + pairs[1]
-        print("message send!")
+        print("message ready")
         restful_str = Conf.Restful_URL + "topic=" + Conf.APP_ID + "&device_id=" + Conf.DEVICE_ID + "&key=" + Conf.SecureKey + "&msg=" + msg
-        r = requests.get(restful_str)
+        try:
+            r = requests.get(restful_str)
+            print("send result")
+            print(r)
+            print("message sent!")
+        except:
+            print("internet err!!")
         #save after upload / makesure data will be synchronize
         format_data_list = [Conf.DEVICE_ID,pairs[0],pairs[1],TEMP,HUM,PM25_AE,PM1_AE,PM10_AE,Illuminance,CO2,TVOC]
-        pi.save_data(path,format_data_list) #save to host
-        pi.save_to_SD(format_data_list)     #save to SD card
-        print("send message saved!")
+        try:
+            pi.save_data(path,format_data_list) #save to host
+            pi.save_to_SD(format_data_list)     #save to SD card
+            print("send message saved!")
+        except:
+            print("Fail to save sent message!")
 
 
 def save_task():
@@ -56,9 +65,13 @@ def save_task():
         #format to ['device_id', 'date', 'time', 'Tmp',  'RH',   'PM2.5','PM10', 'PM1.0','Lux',  'CO2',  'TVOC']
         pairs = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S").split(" ")
         format_data_list = [Conf.DEVICE_ID,pairs[0],pairs[1],TEMP,HUM,PM25_AE,PM1_AE,PM10_AE,Illuminance,CO2,TVOC]
-        pi.save_data(path,format_data_list) #save to host
-        pi.save_to_SD(format_data_list)     #save to SD card
-        print("message saved!")
+        try:
+            pi.save_data(path,format_data_list) #save to host
+            pi.save_to_SD(format_data_list)     #save to SD card
+            print("message saved!")
+        except:
+            print("Fail to save message!")
+
 
 def connection_task():
     while True:
