@@ -265,14 +265,8 @@ try:
         PM25_AE     = data_list[17]
         PM10_AE     = data_list[18]
 
-        print("TEMP:" +str(TEMP))
-        print("HUM:" +str(HUM))
-        print("CO2:" +str(CO2))
-        print("TVOC:" +str(TVOC))
-        print("Illuminance:" +str(Illuminance))
-        print("PM1_AE:" +str(PM1_AE))
-        print("PM25_AE:" +str(PM25_AE))
-        print("PM10_AE:" +str(PM10_AE))
+        print(f"  TEMP  HUMI  CO2  PM1.0  PM2.5  PM10  TVOC  Illuminance")
+        print(f"{TEMP:>6}{HUM:>6}{CO2:>5}{PM1_AE:>7}{PM25_AE:>7}{PM10_AE:>6}{TVOC:>6}{Illuminance:>13}")
         print("------------------------")
 
         #print("storage data") #change to another thread
