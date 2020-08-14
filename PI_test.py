@@ -46,7 +46,8 @@ def upload_task():
         time.sleep(Conf.upload_interval) #300 seconds
         pairs = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S").split(" ")
         #remove GPS if we're not using it
-        msg = "|s_t0=" + str(TEMP) + "|app=" + str(Conf.APP_ID) + "|date=" + pairs[0] + "|s_d2=" + str(PM1_AE) + "|s_d0=" + str(PM25_AE) + "|s_d1=" + str(PM10_AE) + "|s_h0=" + str(HUM) + "|device_id=" + Conf.DEVICE_ID +"|s_g8=" + str(CO2) + "|s_gg=" + str(TVOC) + "|ver_app=" + str(Conf.ver_app) + "|time=" + pairs[1]
+        msg = "|device_id=" + Conf.DEVICE_ID + "|app=" + str(Conf.APP_ID) + "|ver_app=" + str(Conf.ver_app) + "|time=" + pairs[1] + "|date=" + pairs[0]
+        msg+= "|s_t0=" + str(TEMP) + "|s_d2=" + str(PM1_AE) + "|s_d0=" + str(PM25_AE) + "|s_d1=" + str(PM10_AE) + "|s_h0=" + str(HUM) + "|s_g8=" + str(CO2) + "|s_gg=" + str(TVOC)
         if(use_GPS == 1):
             msg += "|gps_lat=" + str(Conf.gps_lat) + "|gps_lon="+ str(Conf.gps_lon)
         if send_light:
