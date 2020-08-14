@@ -71,7 +71,7 @@ draw.rectangle((0,0,width,height), outline=0, fill=0)
 
 # Load default font.
 #font = ImageFont.load_default()
-font=ImageFont.truetype("../ARIALUNI.TTF", FONT_SIZE)
+font=ImageFont.truetype("fonts/ARIALUNI.TTF", FONT_SIZE)
 #font=ImageFont.truetype("../TaipeiSansTCBeta-Regular.ttf", s)
 #font=ImageFont.truetype("../5x7_practical.ttf", s)
 
@@ -93,7 +93,7 @@ def set_size(s):
     global FONT_SIZE
     global font
     FONT_SIZE = s
-    #font=ImageFont.truetype("../ARIALUNI.TTF", FONT_SIZE)
+    #font=ImageFont.truetype("fonts/ARIALUNI.TTF", FONT_SIZE)
 
 def show():
     disp.image(image)
@@ -131,7 +131,7 @@ def draw_text(x,y,str):
 
 def draw_text_size(x,y,str,s=FONT_SIZE):
     global FONT_SIZE
-    font=ImageFont.truetype("../ARIALUNI.TTF", s)
+    font=ImageFont.truetype("fonts/ARIALUNI.TTF", s)
     draw.text((x, y*FONT_SIZE),str,  font=font, fill=255)
     show()
 
@@ -139,7 +139,7 @@ def line(in_str,s=FONT_SIZE):
     global FONT_SIZE
     global anchor_x
     global anchor_y
-    font=ImageFont.truetype("../ARIALUNI.TTF", s)
+    font=ImageFont.truetype("fonts/ARIALUNI.TTF", s)
     draw.text((anchor_x, anchor_y),in_str,  font=font, fill=255)
     #show()
     anchor_y = anchor_y + s
@@ -166,7 +166,7 @@ def line_d(in_str,s=FONT_SIZE):
     global FONT_SIZE
     global anchor_x
     global anchor_y
-    font=ImageFont.truetype("../ARIALUNI.TTF", s)
+    font=ImageFont.truetype("fonts/ARIALUNI.TTF", s)
     draw.text((anchor_x, anchor_y), in_str + ' ' + str(anchor_y), font=font, fill=255)
     show()
     anchor_y = anchor_y + s
@@ -175,9 +175,9 @@ def line_n(in_str,s=FONT_SIZE):
     global FONT_SIZE
     global anchor_x
     global anchor_y
-    #font=ImageFont.truetype("../ARIALUNI.TTF", s)
+    #font=ImageFont.truetype("fonts/ARIALUNI.TTF", s)
     #font = ImageFont.load_default()
-    font=ImageFont.truetype("../TaipeiSansTCBeta-Regular.ttf", s)
+    font=ImageFont.truetype("fonts/TaipeiSansTCBeta-Regular.ttf", s)
     draw.text((anchor_x, anchor_y), in_str + ' ' + str(anchor_y), font=font, fill=255)
     show()
     anchor_y = anchor_y + s
@@ -186,7 +186,7 @@ def line_57(in_str,s=FONT_SIZE):
     global FONT_SIZE
     global anchor_x
     global anchor_y
-    font=ImageFont.truetype("../5x7_practical.ttf", s)
+    font=ImageFont.truetype("fonts/5x7_practical.ttf", s)
     draw.text((anchor_x, anchor_y), in_str + ' ' + str(anchor_y), font=font, fill=255)
     show()
     anchor_y = anchor_y + s
