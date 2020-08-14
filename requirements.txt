@@ -1,0 +1,5 @@
+requests
+pillow
+Adafruit_SSD1306
+pyserial
+RPi.GPIO
