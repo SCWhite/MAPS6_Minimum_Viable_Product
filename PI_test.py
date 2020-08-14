@@ -253,7 +253,6 @@ try:
         print("START GET DATA (loop:" + str(loop) + ")")
         print("========================")
 
-        print("GET ALL DATA")
         data_list = mcu.GET_SENSOR_ALL()
 
         TEMP        = data_list[0]
@@ -275,14 +274,6 @@ try:
         #format_data_list = [Conf.DEVICE_ID,pairs[0],pairs[1],TEMP,HUM,PM25_AE,PM1_AE,PM10_AE,Illuminance,CO2,TVOC]
         #pi.save_data(path,format_data_list)
 
-        #print("------------------------")
-        #print("upload data") #change to another thread
-        #url = Conf.Restful_URL +
-        #msg = "|gps_lat=25.1933|s_t0=" + str(TEMP) + "|app=MAPS6|date=" + pairs[0] + "|s_d2=" + str(PM1_AE) + "|s_d0=" + str(PM25_AE) + "|s_d1=" + str(PM10_AE) + "|s_h0=" + str(HUM) + "|device_id=" + Conf.DEVICE_ID +"|s_g8=" + str(CO2) + "|gps_lon=121.787|ver_app=0.0.1|time=" + pairs[1]
-        #print(msg)
-        #restful_str = Conf.Restful_URL + "topic=" + Conf.APP_ID + "&device_id=" + Conf.DEVICE_ID + "&key=" + Conf.SecureKey + "&msg=" + msg
-        #r = requests.get(restful_str)
-        #print("------------------------")
 
         loop = loop + 1
         time.sleep(5)
