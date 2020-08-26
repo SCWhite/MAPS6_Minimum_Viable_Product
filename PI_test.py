@@ -105,7 +105,7 @@ def connection_task():
 
 def check_connection():
     global connection_flag
-    if(os.system('ping www.google.com -q -c 1  > /dev/null')):
+    if(os.system('ping www.google.com -4 -q -c 1  > /dev/null')):
         connection_flag = "X"
         #print("no internet")
         #return 0
